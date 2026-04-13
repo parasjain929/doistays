@@ -211,7 +211,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('main.jpeg') center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;
   color: var(--color-white);
 }
 
