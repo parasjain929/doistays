@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#2C2C2C" stroke-width="4"/>
+  <!-- Inner circle -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#2C2C2C" stroke-width="1.5"/>
+
+  <!-- Ground line / horizon -->
+  <ellipse cx="100" cy="138" rx="72" ry="4" fill="none" stroke="#2C2C2C" stroke-width="2"/>
+
+  <!-- Sun (behind mountains) -->
+  <path d="M60,105 Q100,70 140,105" fill="none" stroke="#2C2C2C" stroke-width="2"/>
+  <!-- Sun rays -->
+  <line x1="80" y1="82" x2="77" y2="72" stroke="#2C2C2C" stroke-width="1.5"/>
+  <line x1="92" y1="76" x2="90" y2="66" stroke="#2C2C2C" stroke-width="1.5"/>
+  <line x1="100" y1="73" x2="100" y2="63" stroke="#2C2C2C" stroke-width="1.5"/>
+  <line x1="108" y1="76" x2="110" y2="66" stroke="#2C2C2C" stroke-width="1.5"/>
+  <line x1="120" y1="82" x2="123" y2="72" stroke="#2C2C2C" stroke-width="1.5"/>
+
+  <!-- Mountains (background) -->
+  <!-- Left mountain -->
+  <polygon points="45,135 72,62 99,135" fill="none" stroke="#2C2C2C" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Center mountain (tallest) -->
+  <polygon points="70,135 100,48 130,135" fill="none" stroke="#2C2C2C" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Right mountain -->
+  <polygon points="100,135 128,68 156,135" fill="none" stroke="#2C2C2C" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Cottage / Hut (left side) -->
+  <!-- Hut body -->
+  <path d="M62,136 Q62,118 75,118 Q88,118 88,136" fill="#2C2C2C" stroke="#2C2C2C" stroke-width="1.5"/>
+  <!-- Door -->
+  <path d="M70,136 Q70,126 75,126 Q80,126 80,136" fill="#FAF7F2" stroke="none"/>
+
+  <!-- Chimney -->
+  <rect x="63" y="108" width="5" height="14" fill="#2C2C2C"/>
+  <!-- Smoke -->
+  <path d="M65,108 Q62,100 65,93 Q68,86 64,78" fill="none" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M68,108 Q71,101 68,95 Q65,89 69,82" fill="none" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Pine tree (right side) -->
+  <rect x="122" y="115" width="4" height="22" fill="#2C2C2C"/>
+  <!-- Tree layers -->
+  <polygon points="124,115 112,132 136,132" fill="#2C2C2C"/>
+  <polygon points="124,105 114,120 134,120" fill="#2C2C2C"/>
+  <polygon points="124,90 116,108 132,108" fill="#2C2C2C"/>
+  <polygon points="124,78 118,96 130,96" fill="#2C2C2C"/>
+
+  <!-- Bird -->
+  <path d="M140,55 Q143,51 146,54" fill="none" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Text: "Doi" -->
+  <text x="73" y="160" font-family="Georgia, serif" font-size="20" font-weight="400" letter-spacing="5" fill="#2C2C2C">Doi</text>
+
+  <!-- Text: "stays" -->
+  <text x="68" y="178" font-family="Georgia, serif" font-size="18" font-weight="400" letter-spacing="3" fill="#2C2C2C">stays</text>
+</svg>

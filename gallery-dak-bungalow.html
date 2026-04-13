@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dak Bungalow Photos – Doi Stays</title>
+  <meta name="description" content="Browse all photos of Doi Stays Dak Bungalow - a restored British-era heritage bungalow in Kumaon, Uttarakhand.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .gallery-page-header {
+      padding: 120px 0 60px;
+      text-align: center;
+    }
+    .gallery-page-header h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .gallery-page-header p {
+      color: var(--color-text-light);
+      font-size: 1rem;
+    }
+    .gallery-page-header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+      transition: color var(--transition);
+    }
+    .gallery-page-header .back:hover { color: var(--color-text); }
+    .full-gallery {
+      padding: 0 0 80px;
+    }
+    .full-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .full-gallery-grid img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+    .full-gallery-grid img:hover { opacity: 0.85; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: #fff; }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 2.5rem;
+      cursor: pointer;
+      padding: 20px;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-nav:hover { color: #fff; }
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .full-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .lightbox { padding: 16px; }
+      .lightbox-nav { font-size: 1.8rem; padding: 12px; }
+    }
+    @media (max-width: 480px) {
+      .full-gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="gallery-page-header">
+    <div class="container">
+      <a href="dak-bungalow.html" class="back">&larr; Back to Dak Bungalow</a>
+      <h1>Dak Bungalow &mdash; All Photos</h1>
+      <p>66 photos of the heritage bungalow, rooms, grounds, and surroundings</p>
+    </div>
+  </section>
+
+  <section class="full-gallery">
+    <div class="container">
+      <div class="full-gallery-grid">
+        <img src="images-dak-bungalow/IMG-20260411-WA0007.jpg" alt="Dak Bungalow front exterior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8677.jpg" alt="Veranda with columns" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8676.jpg" alt="Bungalow side view with garden" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8678.jpg" alt="Front veranda angle" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8658.jpg" alt="Bungalow rear exterior" loading="lazy">
+        <img src="images-dak-bungalow/IMG-20260411-WA0008.jpg" alt="Bungalow with cloudy sky" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8652.jpg" alt="Garden pathway to bungalow" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8694.jpg" alt="Pathway with hedges" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8691.jpg" alt="Garden pathway with lamp posts" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8654.jpg" alt="Valley view from garden" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8655.jpg" alt="Garden with trees and mountains" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8656.jpg" alt="Mountain view from property" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8657.jpg" alt="Mountain through trees" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8653.jpg" alt="Garden seating with mountain backdrop" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8700.JPG" alt="Kumaon hills panorama" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8701.JPG" alt="Surrounding landscape" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8702.JPG" alt="Mountain and village view" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8706.jpg" alt="Activity area and badminton" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8687.jpg" alt="Lawn and garden area" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8688.jpg" alt="Garden grounds" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8689.jpg" alt="Property grounds" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8690.jpg" alt="Green surroundings" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8635.jpg" alt="Bedroom with fireplace and windows" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8636.jpg" alt="Bedroom vertical view" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8637.jpg" alt="Fireplace with moonlight painting" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8638.jpg" alt="Fireplace close-up" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8639.jpg" alt="Fireplace and bed" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8640.jpg" alt="Second bedroom" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8641.jpg" alt="Bedroom with connecting room" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8642.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8643.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8644.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8645.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8646.jpg" alt="Bedroom with stone fireplace and meditation art" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8647.jpg" alt="Room detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8648.jpg" alt="Room detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8649.jpg" alt="Room detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8650.jpg" alt="Room detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8651.jpg" alt="Room detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8659.jpg" alt="Property view" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8660.jpg" alt="Cottage annex" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8661.jpg" alt="Property area" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8662.jpg" alt="Bed close-up" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8663.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8664.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8665.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8666.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8667.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8669.jpg" alt="Room interior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8670.jpg" alt="Room with panoramic mountain windows" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8671.jpg" alt="Room with valley view" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8672.jpg" alt="Room detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8673.jpg" alt="Room with mountain view through window" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8674.jpg" alt="Room detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8675.jpg" alt="Room detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8680.jpg" alt="Lounge and sitting area" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8681.jpg" alt="Common area" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8682.jpg" alt="Interior detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8683.jpg" alt="Interior detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8684.jpg" alt="Interior detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8685.jpg" alt="Interior detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8686.jpg" alt="Interior detail" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8692.jpg" alt="Property exterior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8693.jpg" alt="Property exterior" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8695.jpg" alt="Garden and grounds" loading="lazy">
+        <img src="images-dak-bungalow/IMG_8696.jpg" alt="Garden and grounds" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
+    <img src="" alt="" id="lightboxImg">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-logo"><img src="logo.svg" alt="Doi Stays" class="footer-logo-img">Doi Stays</p>
+          <p class="footer-tagline">Boutique Mountain Retreats in Kumaon, Uttarakhand</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html#properties">Stays</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Doi Stays. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Lightbox
+    const images = document.querySelectorAll('.full-gallery-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = images[index].src;
+      lightboxImg.alt = images[index].alt;
+      lightboxCounter.textContent = (index + 1) + ' / ' + images.length;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigate(dir) {
+      currentIndex = (currentIndex + dir + images.length) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+      lightboxImg.alt = images[currentIndex].alt;
+      lightboxCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+    }
+
+    images.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', () => navigate(-1));
+    document.getElementById('lightboxNext').addEventListener('click', () => navigate(1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
+    });
+  </script>
+</body>
+</html>
