@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events at Doi Stays | Experiences in Kumaon</title>
+  <meta name="description" content="Discover upcoming music, cultural, retreat and private events around Doi Stays in Kumaon, Uttarakhand.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* =========================================================
+       EVENTS PAGE
+       Add future events in the EVENTS array near the bottom.
+       The page automatically sorts upcoming events first and
+       moves completed events into Past Events.
+       ========================================================= */
+
+    .events-page-intro {
+      padding: 150px 0 72px;
+      text-align: center;
+    }
+
+    .events-page-title h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      line-height: .95;
+      font-weight: 500;
+      margin: 10px 0 22px;
+      color: var(--color-dark);
+    }
+
+    .events-page-intro h2,
+    .events-section h2,
+    .events-cta h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.35rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      font-weight: 500;
+      margin: 10px 0 22px;
+    }
+
+    .events-page-intro-copy {
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.85;
+      font-size: 1.05rem;
+    }
+
+    .events-section {
+      padding: 0 0 100px;
+    }
+
+    .events-section + .events-section {
+      padding-top: 20px;
+    }
+
+    .events-section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 34px;
+    }
+
+    .events-section-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .events-section-heading p {
+      max-width: 480px;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* Featured event */
+    .featured-event {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      min-height: 620px;
+      background: #f5f1e9;
+      overflow: hidden;
+    }
+
+    .featured-event-poster {
+      position: relative;
+      min-height: 620px;
+      background: #e9e4d9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+
+    .featured-event-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .featured-event-content {
+      padding: 64px clamp(34px, 5vw, 76px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .event-status {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      border: 1px solid rgba(0, 0, 0, .22);
+      padding: 7px 13px;
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .event-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      margin-right: 9px;
+    }
+
+    .featured-event-content h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: .95;
+      font-weight: 500;
+      margin: 0 0 12px;
+    }
+
+    .event-subtitle {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.45rem;
+      margin: 0 0 25px;
+    }
+
+    .event-description {
+      max-width: 610px;
+      line-height: 1.8;
+      margin: 0 0 30px;
+    }
+
+    .event-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid rgba(0, 0, 0, .16);
+      border-bottom: 1px solid rgba(0, 0, 0, .16);
+      margin-bottom: 30px;
+    }
+
+    .event-meta-item {
+      padding: 17px 18px 17px 0;
+    }
+
+    .event-meta-item:nth-child(2n) {
+      padding-left: 18px;
+      border-left: 1px solid rgba(0, 0, 0, .16);
+    }
+
+    .event-meta-label {
+      display: block;
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      opacity: .65;
+    }
+
+    .event-meta-value {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+    }
+
+    .event-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .event-tag {
+      border: 1px solid rgba(0, 0, 0, .18);
+      padding: 7px 11px;
+      font-size: .78rem;
+    }
+
+    .event-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Additional events */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .event-card {
+      border: 1px solid rgba(0, 0, 0, .12);
+      background: #fff;
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, .08);
+    }
+
+    .event-card-image {
+      aspect-ratio: 4 / 3;
+      background: #eeeae2;
+      overflow: hidden;
+    }
+
+    .event-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s ease;
+    }
+
+    .event-card:hover .event-card-image img {
+      transform: scale(1.035);
+    }
+
+    .event-card-content {
+      padding: 25px;
+    }
+
+    .event-card-date {
+      font-size: .72rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      opacity: .62;
+      margin-bottom: 9px;
+    }
+
+    .event-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.9rem;
+      line-height: 1;
+      font-weight: 500;
+      margin: 0 0 10px;
+    }
+
+    .event-card p {
+      line-height: 1.65;
+      margin: 0 0 18px;
+    }
+
+    .event-card-link {
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 3px;
+    }
+
+    .past-events {
+      background: #f5f1e9;
+      padding: 90px 0 100px;
+    }
+
+    .past-events .event-card {
+      background: transparent;
+    }
+
+    .past-events .event-card-image {
+      opacity: .88;
+    }
+
+    .empty-events {
+      border-top: 1px solid rgba(0, 0, 0, .14);
+      border-bottom: 1px solid rgba(0, 0, 0, .14);
+      padding: 30px 0;
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-style: italic;
+    }
+
+    .events-stay {
+      padding: 105px 0;
+      background: #f5f1e9;
+    }
+
+    .events-stay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .events-stay h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.3rem, 5vw, 3.7rem);
+      font-weight: 500;
+      line-height: 1.05;
+      margin: 8px 0 20px;
+    }
+
+    .events-stay p {
+      line-height: 1.8;
+      max-width: 570px;
+    }
+
+    .events-stay-image {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .events-stay-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .events-cta {
+      padding: 105px 0;
+      text-align: center;
+    }
+
+    .events-cta p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      line-height: 1.8;
+    }
+
+    .events-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .featured-event,
+      .events-stay-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-event-poster {
+        min-height: auto;
+        max-height: 720px;
+      }
+
+      .events-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .events-stay-grid {
+        gap: 42px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .events-page-intro {
+        padding: 65px 0 45px;
+      }
+
+      .events-section {
+        padding-bottom: 70px;
+      }
+
+      .events-section-heading {
+        display: block;
+      }
+
+      .events-section-heading p {
+        margin-top: 15px;
+      }
+
+      .featured-event-poster {
+        padding: 12px;
+      }
+
+      .featured-event-content {
+        padding: 42px 25px;
+      }
+
+      .featured-event-content h3 {
+        font-size: 3rem;
+      }
+
+      .event-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .event-meta-item,
+      .event-meta-item:nth-child(2n) {
+        padding-left: 0;
+      }
+
+      .event-meta-item:nth-child(n+2) {
+        border-left: 0;
+        border-top: 1px solid rgba(0, 0, 0, .16);
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Doi Stays" class="nav-logo-img">Doi Stays</a>
+    <div class="nav-links">
+      <a href="index.html#properties">Stays</a>
+      <a href="events.html">Events</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#experiences">Experiences</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#properties">Stays</a>
+    <a href="events.html">Events</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#experiences">Experiences</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <!-- Page Intro -->
+  <section class="events-page-intro events-page-title">
+    <div class="container">
+      <p class="section-label">Events &amp; Experiences</p>
+      <h2>Come for the experience.<br>Stay for the mountains.</h2>
+      <p class="events-page-intro-copy">
+        From intimate music festivals to retreats and private gatherings, discover experiences that feel a little different in the Kumaon hills. This is where we will share upcoming events around Doi Stays and keep a record of the ones that have already happened.
+      </p>
+    </div>
+  </section>
+
+  <!-- Upcoming Events -->
+  <section class="events-section">
+    <div class="container">
+      <div class="events-section-heading">
+        <div>
+          <p class="section-label">What's Coming Up</p>
+          <h2>Upcoming Events</h2>
+        </div>
+        <p>Keep an eye on this space for music, art, culture and other experiences in and around Kumaon.</p>
+      </div>
+
+      <div id="upcoming-events"></div>
+    </div>
+  </section>
+
+  <!-- Past Events -->
+  <section class="past-events">
+    <div class="container">
+      <div class="events-section-heading">
+        <div>
+          <p class="section-label">A Look Back</p>
+          <h2>Past Events</h2>
+        </div>
+        <p>Events move here automatically once their dates have passed, so the newest experiences always stay at the top.</p>
+      </div>
+
+      <div id="past-events"></div>
+    </div>
+  </section>
+
+  <!-- Stay with Doi Stays -->
+  <section class="events-stay">
+    <div class="container">
+      <div class="events-stay-grid">
+        <div>
+          <p class="section-label">Stay with Doi Stays</p>
+          <h2>Make the event a mountain escape.</h2>
+          <p>
+            Coming for an event in Kasar? Make a few days of it. Stay with Doi Stays and use your time here to discover the landscapes, cafés, trails and quiet charm of the Kumaon hills.
+          </p>
+          <a href="index.html#properties" class="btn btn-outline">Explore Our Stays</a>
+        </div>
+        <div class="events-stay-image">
+          <img src="images-dak-bungalow/dak.jpeg" alt="Doi Stays heritage retreat in Kumaon" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enquiry -->
+  <section class="events-cta">
+    <div class="container">
+      <p class="section-label">Create Something Here</p>
+      <h2>Planning an event?</h2>
+      <p>
+        If you are bringing a retreat, gathering, workshop or celebration to the mountains, get in touch and tell us what you have in mind.
+      </p>
+      <div class="events-actions">
+        <a href="index.html#contact" class="btn btn-outline">Send an Enquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-logo"><img src="logo.png" alt="Doi Stays" class="footer-logo-img">Doi Stays</p>
+          <p class="footer-tagline">Boutique Mountain Retreats in Kumaon, Uttarakhand</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html#properties">Stays</a>
+          <a href="events.html">Events</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Doi Stays. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       EVENT DATA
+       ---------------------------------------------------------
+       To add another event, copy one object and change the values.
+
+       date:      ISO format YYYY-MM-DD (used for sorting/status)
+       endDate:   YYYY-MM-DD
+       image:     path to event image/poster
+       featured:  true = large feature layout
+       link:      optional page or external booking/info URL
+       ========================================================= */
+    const EVENTS = [
+      {
+        title: "Kasar Music Fest 2.0",
+        subtitle: "Where music meets the mountains.",
+        date: "2026-10-03",
+        endDate: "2026-10-04",
+        location: "Kasar Devi, Almora, Uttarakhand",
+        edition: "Kasar Music Fest 2.0",
+        featuring: "Rahgir • Nupur Pant & more",
+        image: "kasar-music-fest-2.png",
+        featured: true,
+        description: "An intimate celebration of music, art, and the Himalayan way of life, set amidst the serene landscapes of Kasar Devi. Created for people who love discovering new sounds and meaningful experiences, the festival brings together artists, musicians, travellers and mountain lovers for a few unforgettable days of live music, community and slow mountain living.",
+        tags: ["Live Music", "Mountains", "Art", "Community"],
+        stayText: "Stay close to the music. Wake up to the Himalayas."
+      }
+
+      /* ADD MORE EVENTS HERE
+      ,{
+        title: "Your Next Event",
+        subtitle: "A short line about the experience.",
+        date: "2027-01-15",
+        endDate: "2027-01-17",
+        location: "Kasar Devi, Almora, Uttarakhand",
+        edition: "Edition / Event Type",
+        featuring: "Artists / Hosts / Guests",
+        image: "images-events/your-event.jpg",
+        featured: false,
+        description: "Your event description goes here.",
+        tags: ["Music", "Art", "Culture"],
+        link: "your-event-page.html"
+      }
+      */
+    ];
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    function parseDate(value) {
+      const parts = value.split('-').map(Number);
+      return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    function formatDate(start, end) {
+      const s = parseDate(start);
+      const e = parseDate(end || start);
+      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+      if (s.getTime() === e.getTime()) {
+        return `${s.getDate()} ${months[s.getMonth()]} ${s.getFullYear()}`;
+      }
+
+      if (s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear()) {
+        return `${s.getDate()}–${e.getDate()} ${months[s.getMonth()]} ${s.getFullYear()}`;
+      }
+
+      return `${s.getDate()} ${months[s.getMonth()]} ${s.getFullYear()} – ${e.getDate()} ${months[e.getMonth()]} ${e.getFullYear()}`;
+    }
+
+    function isPast(event) {
+      return parseDate(event.endDate || event.date) < today;
+    }
+
+    function eventCard(event, past = false) {
+      const link = event.link || '#';
+      const action = event.link ? `<a class="event-card-link" href="${link}" target="_blank" rel="noopener">Know More &rarr;</a>` : '';
+
+      return `
+        <article class="event-card">
+          <div class="event-card-image">
+            <img src="${event.image}" alt="${event.title}" loading="lazy">
+          </div>
+          <div class="event-card-content">
+            <div class="event-card-date">${formatDate(event.date, event.endDate)}${past ? ' · Past Event' : ''}</div>
+            <h3>${event.title}</h3>
+            <p>${event.subtitle || event.description}</p>
+            ${action}
+          </div>
+        </article>
+      `;
+    }
+
+    function featuredEvent(event) {
+      const link = event.link || 'index.html#contact';
+      const buttonText = event.link ? 'Event Details' : 'Enquire About Staying';
+
+      return `
+        <article class="featured-event">
+          <div class="featured-event-poster">
+            <img src="${event.image}" alt="${event.title} event poster">
+          </div>
+          <div class="featured-event-content">
+            <span class="event-status">Upcoming</span>
+            <h3>${event.title}</h3>
+            <p class="event-subtitle">${event.subtitle}</p>
+            <p class="event-description">${event.description}</p>
+
+            <div class="event-meta">
+              <div class="event-meta-item">
+                <span class="event-meta-label">When</span>
+                <span class="event-meta-value">${formatDate(event.date, event.endDate)}</span>
+              </div>
+              <div class="event-meta-item">
+                <span class="event-meta-label">Where</span>
+                <span class="event-meta-value">${event.location}</span>
+              </div>
+              <div class="event-meta-item">
+                <span class="event-meta-label">Featuring</span>
+                <span class="event-meta-value">${event.featuring}</span>
+              </div>
+              <div class="event-meta-item">
+                <span class="event-meta-label">Edition</span>
+                <span class="event-meta-value">${event.edition}</span>
+              </div>
+            </div>
+
+            <div class="event-tags">
+              ${(event.tags || []).map(tag => `<span class="event-tag">${tag}</span>`).join('')}
+            </div>
+
+            <div class="event-actions">
+              <a href="${link}" ${event.link ? 'target="_blank" rel="noopener"' : ''} class="btn btn-outline">${buttonText}</a>
+              <a href="index.html#properties" class="btn btn-outline">Stay with Doi Stays</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderEvents() {
+      const upcoming = EVENTS
+        .filter(event => !isPast(event))
+        .sort((a, b) => parseDate(a.date) - parseDate(b.date));
+
+      const past = EVENTS
+        .filter(event => isPast(event))
+        .sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
+      const upcomingContainer = document.getElementById('upcoming-events');
+      const pastContainer = document.getElementById('past-events');
+
+      if (!upcoming.length) {
+        upcomingContainer.innerHTML = '<div class="empty-events">New experiences are being planned. Check back soon.</div>';
+      } else {
+        const firstFeatured = upcoming.find(event => event.featured) || upcoming[0];
+        const remaining = upcoming.filter(event => event !== firstFeatured);
+
+        upcomingContainer.innerHTML = featuredEvent(firstFeatured) +
+          (remaining.length ? `<div class="events-grid" style="margin-top:28px;">${remaining.map(event => eventCard(event)).join('')}</div>` : '');
+      }
+
+      if (!past.length) {
+        pastContainer.innerHTML = '<div class="empty-events">Our first event memories will appear here after the event dates have passed.</div>';
+      } else {
+        pastContainer.innerHTML = `<div class="events-grid">${past.map(event => eventCard(event, true)).join('')}</div>`;
+      }
+    }
+
+    renderEvents();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
